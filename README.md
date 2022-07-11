@@ -44,7 +44,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- This project built in Microverse's fourth module's third week.
+- This project built from Gotoinc test-task.
 
 ## 📝 License
 
