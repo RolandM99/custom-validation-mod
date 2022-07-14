@@ -4,31 +4,34 @@ module Validation
   end
 
   module CustomValidation
-    # rubocop:disable
+    # rubocop:disable Style/ClassVars
     @@rule_types = %i[presence format type]
-    @@error_messages = {
+    @@exception_messages = {
       # initialization of class variables
       presence: 'attribute should be neither nil nor an empty string',
       format: 'attribute should match the passed regular expression',
       type: 'attribute should be an instance of the passed class'
     }
-    # rubocop:enable
+    # rubocop:enable Style/ClassVars
 
     def r_name
       "@@#{to_s.downcase}rules"
     end
 
     # list of all validation rules for the current class
-    # rubucop:disable
+
+    # rubocop:disable Style/EvalWithLocation
     def rules
-      eval("#{r_name}rules ||= {}")
+      eval("#{r_name}rules ||= {}") # rubocop:disable Security/Eval
     end
+    # rubocop:enable Style/EvalWithLocation
 
     def error_messages
-      @@error_messages
+      @@exception_messages
     end
 
     # action to add new rule on the validation list
+    # rubocop:disable Style/GuardClause
     def validate(name, rule)
       if @@rule_types.include?(rule.keys.first)
         rules[name] = rule
@@ -36,7 +39,7 @@ module Validation
         raise "Validation#syntax_error: unsupported validation rule key \\ \"#{rule.keys.first}\" \\. "
       end
     end
-    # rubocop:enable
+    # rubocop:enable Style/GuardClause
   end
 
   def valid?
@@ -84,7 +87,7 @@ module Validation
     "#{first_message} #{body} #{last_message}."
   end
 
-  # rubocop:disable
+  # rubocop:disable Style/OptionalBooleanParameter
   def custom_validate_attribute(key, rules, attr = false)
     rules.each_pair do |rule_name, rule_value|
       check = send("#{rule_name}?", key, rule_value)
@@ -93,5 +96,5 @@ module Validation
     end
     true
   end
-  # rubocop:enable
+  # rubocop:enable Style/OptionalBooleanParameter
 end
