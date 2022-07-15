@@ -1,6 +1,7 @@
 
 ## Custom Validation Module
 
+> Implementation of a custom validation module with a class `TestClass` to demonstrate validation usage using pure `RUBY` without `Rails`.
 
 ## Built With
 
@@ -11,18 +12,22 @@
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
-```
-Clone the project by using https://github.com/RolandM99/custom-validation-mod.git
+
+Clone the project by using `git clone https://github.com/RolandM99/custom-validation-mod.git`
 
 cd into custom-validation-mod
 
-bundle install
+run `bundle install` to update all gem file
 
-```
+Run:
+    `ruby core_program.rb` to test the program
+
+- 🎯 The main module Validation is in `validation_module.rb`
+- 🎯 The class with custom validation sets is in `test.rb`
 
 ### Prerequisites
 
--Ruby
+- Ruby
 
 ## Authors
 
@@ -45,7 +50,3 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - This project built from Gotoinc test-task.
-
-## 📝 License
-
-This project is [MIT](./MIT.md) licensed.
